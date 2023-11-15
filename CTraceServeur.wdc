@@ -1,0 +1,83 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : CTraceServeur
+ major_version : 28
+ minor_version : 0
+ type : 4
+ description : ""
+ subtype : 0
+class :
+ identifier : 0x1cf777b90004f78a
+ internal_properties : CAAAAAgAAAB2/vstTMCJbS/hlxjFxirSqKvCUuv8YxgpWyl7S3iA
+ code_elements :
+  type_code : 10
+  p_codes :
+   -
+     code : |1-
+      CTraceServeur est une classe
+      	m_nIdFichier est un entier
+      Fin
+     type : 131072
+  procedures :
+   -
+     name : Constructeur
+     procedure_id : 2087268588762560394
+     type_code : 27
+     code : |1+
+      PROCEDURE Constructeur()
+      
+     type : 589824
+   -
+     name : Destructeur
+     procedure_id : 2087268588762625930
+     type_code : 28
+     code : |1-
+      PROCEDURE Destructeur()
+      
+      // Fermeture du fichier si nécessaire
+      SI m_nIdFichier <> -1 ALORS fFerme(m_nIdFichier)
+     type : 655360
+   -
+     name : DéfinirFichier
+     procedure_id : 2087268794921104919
+     type_code : 12
+     code : |1+
+      // Résumé : Défini le fichier de trace
+      // Syntaxe :
+      //DéfinirFichier (<sNomFichier>)
+      //
+      // Paramètres :
+      //	sNomFichier : <indiquez ici le rôle de sNomFichier>
+      // Valeur de retour :
+      // 	Aucune
+      //// Exemple :
+      // Indiquez ici un exemple d'utilisation.
+      //
+      Procédure DéfinirFichier(sNomFichier)
+      
+      // Ouverture du fichier
+      m_nIdFichier = fOuvre(sNomFichier,foCréation)
+     type : 458752
+   -
+     name : Information
+     procedure_id : 2087268799216137860
+     type_code : 12
+     code : |1+
+      Procédure Information(sInfo)
+      
+      si m_nIdFichier<>-1 alors
+      	fEcritLigne(m_nIdFichier,sInfo)
+      FIN
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+  original_name : CClasse1
+resources :
+ string_res :
+  identifier : 0x10fae381032cecf8
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

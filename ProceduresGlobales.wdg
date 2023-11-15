@@ -1,0 +1,268 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : ProceduresGlobales
+ major_version : 28
+ minor_version : 0
+ type : 7
+ description : ""
+ subtype : 0
+procedure_set :
+ identifier : 0x113daed30e90d478
+ internal_properties : CAAAAAgAAABGLu41kG7fjQV3iS4F72qmnKaNh5694reolNKIW0iw
+ code_elements :
+  internal_properties : CAAAAAgAAAA0WyWHyzw5a6QM5mJw7guLiRsAN/eUAD3+Nx/eTj0Og1se/QSeJaU8p6YLqipJNc5VkuJis3LSHdjBNyF4vmTTSAr0uJvzgO30YFAsyLALKA==
+  type_code : 31
+  p_codes :
+   -
+     code : |1-
+      clTrace est un CTraceServeur
+     type : 720896
+  procedures :
+   -
+     name : sRechercher
+     procedure_id : 1242341293729961080
+     type_code : 15
+     code : |1-
+      Procédure sRechercher(tabMotsCles est un tableau de chaine) : tableau d'entiers
+      
+      // Tableau des résultats
+      tabTableauResultat est un tableau d'entier
+      
+      // Pour tous les mots clés, on fait une recherche de type Ouvre
+      sMotCle est une chaine
+      Pour tout sMotCle de tabMotsCles
+      	clTrace:Information("Nouveau Mot clé  : "+sMotCle)
+      	
+      	// On lance la recherche
+      	clTrace:Information("Lancement de la requête")
+      	HExécuteRequête(Requête_Image,hRequêteDéfaut,sMotCle)
+      	SI ErreurDétectée ALORS
+      		clTrace:Information("Erreur sur la requête : "+HErreurInfo())
+      		RENVOYER tabTableauResultat
+      	FIN
+      	clTrace:Information("Requête exécutée")
+      	
+      	// On parcours le résultat de la recherche
+      	Pour TOUT Requête_Image 
+      		// On regarde si on a déjà cette image
+      		SI TableauCherche(tabTableauResultat,tcLinéaire,Requête_Image.IDImage) = -1 ALORS
+      			// On ajoute cette image au résultat de la recherche			
+      			TableauAjouteLigne(tabTableauResultat,Requête_Image.IDImage)
+      			
+      			clTrace:Information("Image ajoutée : "+Requête_Image.IDImage)
+      		FIN
+      	FIN
+      	
+      FIN
+      
+      clTrace:Information("Fin du parcours du résultat de la recherche")
+      
+      
+      // On renvoie la liste des mots clés
+      RENVOYER tabTableauResultat
+     type : 458752
+   -
+     name : RechercherImages
+     procedure_id : 1242341293730026616
+     type_code : 15
+     code : |1+
+      Procédure RechercherImages(sMotsCles est une chaine,bRechercheOU est un booléen) : tableau d'entier
+      
+      tabMotsCles est un tableau de chaines
+      
+      clTrace:Information("bRechercheOU = "+bRechercheOU )
+      
+      pour toute chaine sMot de sMotsCles separee par "$"
+      	TableauAjoute(tabMotsCles,sMot)
+      FIN
+      
+      // On recherche les images correspondant aux mots clés
+      tabResultat est un tableau d'entier
+      SI ChaîneCompare(bRechercheOU,"true",ccSansCasse+ccSansPonctuationNiEspace) = 0 _OU_ bRechercheOU = 1 _OU_ bRechercheOU = "1" ALORS
+      	tabResultat = sRechercher(tabMotsCles)
+      SINON
+      	tabResultat = RechercherETOU(tabMotsCles)
+      FIN
+      
+      // On renvoie la liste des images à aller chercher
+      RENVOYER tabResultat
+     type : 458752
+   -
+     name : RenvoyerImage
+     procedure_id : 1242341293730157688
+     type_code : 15
+     code : |1-
+      Procédure PUBLIQUE RenvoyerImage(nNumImage est un entier) : chaine
+      
+      // Variables locales
+      sContenu est une chaine
+      
+      // Recherche de l'image
+      clTrace:Information("Recherche de l'image")
+      HLitRecherchePremier(Image,IDImage,nNumImage)
+      si htrouve(Image) alors
+      	clTrace:Information("Image trouvée : " +gsRepImage + ["/"] + Image.Chemin)
+      	SI fFichierExiste(gsRepImage + ["/"] + Image.Chemin) = Vrai alors
+      		sContenu = fChargeTexte(gsRepImage + ["/"] + Image.Chemin) 
+      		clTrace:Information("Taille Contenu : "+Taille(sContenu)+" "+"Contenu : "+sContenu)
+      	SINON
+      		clTrace:Information("Impossible de charger le contenu de l'image : " + gsRepImage + ["/"] + Image.Chemin)
+      	FIN
+      	
+      	// On encode le fichier
+      	RENVOYER Crypte(sContenu,"",crypteAucun,encodeBASE64)
+      	
+      SINON
+      	// On renvoie une chaine vide
+      	RENVOYER ""
+      FIN
+     type : 458752
+   -
+     name : tabRenvoyerMotsCles
+     procedure_id : 1242341293730223224
+     type_code : 15
+     code : |1-
+      Procédure tabRenvoyerMotsCles() : tableau de chaines
+      
+      // Variables locales
+      tabMotsClés est un tableau de chaine
+      
+      // On renvoie le contenu du fichier des mots-clés
+      HLitPremier(Mot_clé)
+      TANTQUE pÄS HEnDehors(Mot_clé)
+      	TableauAjoute(tabMotsClés,Mot_clé.Mot)
+      	HLitSuivant(Mot_clé)
+      FIN
+      
+      // On renvoie la liste des mots clés
+      RENVOYER tabMotsClés
+     type : 458752
+   -
+     name : RechercherETOU
+     procedure_id : 1242341293730288760
+     type_code : 15
+     code : |1-
+      Procédure RechercherETOU(tabMotsClés est un tableau de chaine) : tableau d'entier
+      
+      // Variables locales
+      sMotCle est une chaine
+      tabResultats est un tableau d'entier
+      bTrouve est un booléen
+      
+      // Ouverture de la base 
+      SI ErreurDétectée alors
+      	ExceptionDéclenche(exceptionErreur,ErreurInfo())
+      	RENVOYER tabResultats
+      FIN
+      
+      // Pour chaque image, on regarde si les mots clés correspondent
+      Pour TOUT Image SUR IDImage
+      	// On recherche dans le fichier de relation les mots clés : 
+      	// si un mot clé est absent, on ne retient pas l'image
+      	bTrouve = Vrai
+      	
+      	Pour tout sMotCle de tabMotsClés
+      		// Recherche dans le fichier de relation : 		
+      		HLitRecherchePremier(Image_Mot_clé,IDImage_Mot_clé,HConstruitValClé(Image_Mot_clé,IDImage_Mot_clé,Image.IDImage,sMotCle))
+      		SI HTrouve(Image_Mot_clé)=Faux ALORS
+      			bTrouve = Faux	
+      		FIN
+      	FIN
+      	
+      	// Si le mot clé est trouvé on l'ajoute au résultat
+      	SI bTrouve = Vrai ALORS
+      		TableauAjoute(tabResultats,Image.IDImage)
+      	FIN
+      FIN
+      
+      RENVOYER tabResultats
+     type : 458752
+   -
+     name : Initialiser
+     procedure_id : 1821618809900894407
+     type_code : 15
+     code : |1-
+      Procédure Initialiser()
+      
+      clTrace.DéfinirFichier(gsRepEncours + ["/"] + "ServeurWebservice.log")
+     type : 458752
+  procedure_templates : []
+  property_templates : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+resources :
+ string_res :
+  identifier : 0x3c04b3b56ca157ed
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+  strings :
+   -
+     text :
+      fr-FR : Le répertoire <%1> n'existe pas.
+     index : 2
+   -
+     text :
+      fr-FR : Les fichiers de données ne sont pas présents dans le  répertoire <%1>.
+     index : 3
+   -
+     text :
+      fr-FR : "Mot clé numéro : "
+     index : 4
+   -
+     text :
+      fr-FR : Lancement de la requête
+     index : 5
+   -
+     text :
+      fr-FR : "Erreur sur la requête : "
+     index : 6
+   -
+     text :
+      fr-FR : Requête exécutée
+     index : 7
+   -
+     text :
+      fr-FR : Début du parcours du résultat de la recherche
+     index : 8
+   -
+     text :
+      fr-FR : "Image ajoutée : "
+     index : 9
+   -
+     text :
+      fr-FR : Poursuite du parcours du résultat de la recherche
+     index : 10
+   -
+     text :
+      fr-FR : Fin du parcours du résultat de la recherche
+     index : 11
+   -
+     text :
+      fr-FR : "Chaîne résultat : "
+     index : 12
+   -
+     text :
+      fr-FR : Recherche de l'image
+     index : 13
+   -
+     text :
+      fr-FR : "Image trouvée : "
+     index : 14
+   -
+     text :
+      fr-FR : "Image : "
+     index : 15
+   -
+     text :
+      fr-FR : "taille : "
+     index : 16
+   -
+     text :
+      fr-FR : "Taille Contenu : "
+     index : 17
+   -
+     text :
+      fr-FR : "Contenu : "
+     index : 18
+custom_note :
+ internal_properties : CAAAAAgAAABtB9HWVzrXO2+4NDRVK0vmzaNKrCKqH1DBX30lMmGZ

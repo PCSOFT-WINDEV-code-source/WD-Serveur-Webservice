@@ -1,0 +1,116 @@
+#To edit and compare internal_properties, use WINDEV integrated tools.
+#Internal properties refer to the properties of controls in windows, reports, etc.
+info :
+ name : WD Serveur Webservice
+ major_version : 28
+ minor_version : 0
+ type : 4097
+ description : ""
+ subtype : 0
+project :
+ identifier : 0x0
+ internal_properties : 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
+ configurations :
+  -
+    name : WD Serveur Webservice
+    internal_properties : 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
+    configuration_id : 17523522138898819688
+    type : 5
+    generation_name : .\WD_Serveur_Webservice.awws
+    version : {}
+    language : 1
+    64bits : true
+ elements :
+  identifier : 0x4cf772fd00027b1a
+  elements :
+   -
+     name : ProceduresGlobales
+     identifier : 0x4cf77c6d002358cc
+     internal_properties : CAAAAAgAAABAPrjkw7jwKzQTO9ITAU8dRjetZfTYCSf6iwT3k9k71T+nQf9N9aWeUcs1gwP9hXtFzQ==
+     physical_name : .\ProceduresGlobales.wdg
+     type : 7
+     configurations :
+      -
+        configuration_id : 17523522138898819688
+        public : true
+   -
+     name : Requête_Image
+     identifier : 0x4cf77c8f0025dc9b
+     internal_properties : CAAAAAgAAAAUcny4B3w0N4B/9w4vLkeNjsFtXeEdvw+2Ea2MLXoSxnqQtAwxyXHq7VdBv0e5QbcBAQ==
+     physical_name : .\Requete_Image.WDR
+     type : 5
+   -
+     name : CTraceServeur
+     identifier : 0x4cf777cb00213e3a
+     internal_properties : CAAAAAgAAAC9mZWJNmNLVGMeFik6agAy74JOJpvBuzqtRj+s3gII2GygJhom3I6JTPbg2FiIcGCoqA==
+     physical_name : .\CTraceServeur.wdc
+     type : 4
+   -
+     name : COL_TestHF
+     identifier : 0x4282069201688dc0
+     internal_properties : CAAAAAgAAACA/vgkg/iw6/TT+xLTFN91qjlx+cq49sittsPYMNDEFCTe7sKNtWXekYt1Q8M9xTuFjQ==
+     physical_name : .\COL_TestHF.wdg
+     type : 7
+   -
+     name : TEST_COL_TestHF
+     identifier : 0x42820697016aa268
+     internal_properties : CAAAAAgAAACutIaaKVbekV5JnbCx64WvFBUjS378tpSxeQyX9RtxR/kpo52nUwcA9yGbZS2jX1G7uw==
+     physical_name : .\TEST_COL_TestHF.wxt
+     type : 17
+  other_elements : []
+  analysis : .\WD Serveur Webservice.ana\WD Serveur Webservice.wda
+  net_assemblies : []
+  uwp_api : []
+  external_components : []
+  internal_components : []
+ report_and_queries_enabled : false
+ common_generation_directory : true
+ languages :
+  - fr-FR
+ url_rewriting :
+  internal_properties : CAAAAAgAAADkPzcUdUUS7wCiun+MCjqYH70RJdzkSv/nRvXZ3ENdikMa6bcHtsAH
+ code_elements :
+  internal_properties : CAAAAAgAAABWvk274zSG1cB/tlIvjEgrdsLkQwOW1454KBXsTyw1e8MuadzCZfTIj9MbMEbUy4LqLPR6kZhujkvCXnsGy/8sbDUGHdjtwrurAP6UHc47Yf6Z0V/P+jNPex8X
+  type_code : 0
+  p_codes :
+   -
+     code : |1+
+      
+      CONSTANTE
+      	CST_IMAGES = "Images"
+      	CST_TABLEAURES = "TAB_RESULTAT"
+      FIN
+      
+      gsRepEncours est une chaine = fRepExe() + ["/"] + "../"
+      gsRepImage est une chaine
+      
+      // Répertoire des Images
+      gsRepImage = gsRepEncours + ["/"] + CST_IMAGES
+      
+      // Initialisation de la collection de procédures
+      Initialiser()
+     type : 196608
+   -
+     type : 196621
+   -
+     type : 196627
+     enabled : false
+  orphans :
+   -
+     name : WD Serveur Webservice
+     identifier : 0x4cf772fd00037b97
+     code_elements :
+      type_code : 159
+      p_codes : []
+ code_parameters :
+  internal_properties : CAAAAAgAAACVGQgYbalU7DKC3oH4ItDrjtcTHXXV/EuH8q0IbhyQlw==
+rad :
+ internal_properties : CAAAAAgAAABhIL0UXeZmxDJxY3Xy0Q==
+project_explorer :
+ explorer_type : project
+resources :
+ string_res :
+  identifier : 0x0
+  internal_properties : CAAAAAgAAACm76HWfKGWp33VjXInA4cRlqArlgTTA862QGt72W2ld5Y=
+custom_note :
+ internal_properties : CAAAAAgAAAAd98VSJfHHqE3P0QHwrwdhn7ig8dWBR6valpUTgnAMTVXiDg==

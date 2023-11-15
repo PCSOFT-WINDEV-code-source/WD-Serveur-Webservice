@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8" ?><definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:s0="urn:WD_Serveur_Webservice" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:WD_Serveur_Webservice">
+<types>
+<xsd:schema elementFormDefault="qualified" targetNamespace="urn:WD_Serveur_Webservice">
+<xsd:simpleType name="WLChar">
+<xsd:restriction base="xsd:string">
+<xsd:length value="1" fixed="true"/>
+</xsd:restriction>
+</xsd:simpleType>
+<xsd:complexType name="tsRechercher">
+<xsd:sequence>
+<xsd:element name="tabMotsCles" type="xsd:string" maxOccurs="unbounded"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="sRechercher" type="s0:tsRechercher"/>
+<xsd:complexType name="tsRechercherResponse">
+<xsd:sequence>
+<xsd:element name="sRechercherResult" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="sRechercherResponse" type="s0:tsRechercherResponse"/>
+<xsd:complexType name="tRechercherImages">
+<xsd:sequence>
+<xsd:element name="sMotsCles" type="xsd:string"/>
+<xsd:element name="bRechercheOU" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="RechercherImages" type="s0:tRechercherImages"/>
+<xsd:complexType name="tRechercherImagesResponse">
+<xsd:sequence>
+<xsd:element name="RechercherImagesResult" type="xsd:int" maxOccurs="unbounded"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="RechercherImagesResponse" type="s0:tRechercherImagesResponse"/>
+<xsd:complexType name="tRenvoyerImage">
+<xsd:sequence>
+<xsd:element name="nNumImage" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="RenvoyerImage" type="s0:tRenvoyerImage"/>
+<xsd:complexType name="tRenvoyerImageResponse">
+<xsd:sequence>
+<xsd:element name="RenvoyerImageResult" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="RenvoyerImageResponse" type="s0:tRenvoyerImageResponse"/>
+<xsd:complexType name="ttabRenvoyerMotsCles"/>
+<xsd:element name="tabRenvoyerMotsCles" type="s0:ttabRenvoyerMotsCles"/>
+<xsd:complexType name="ttabRenvoyerMotsClesResponse">
+<xsd:sequence>
+<xsd:element name="tabRenvoyerMotsClesResult" type="xsd:string" maxOccurs="unbounded"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="tabRenvoyerMotsClesResponse" type="s0:ttabRenvoyerMotsClesResponse"/>
+<xsd:complexType name="tRechercherETOU">
+<xsd:sequence>
+<xsd:element name="tabMotsClés" type="xsd:string" maxOccurs="unbounded"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="RechercherETOU" type="s0:tRechercherETOU"/>
+<xsd:complexType name="tRechercherETOUResponse">
+<xsd:sequence>
+<xsd:element name="RechercherETOUResult" type="xsd:string"/>
+</xsd:sequence>
+</xsd:complexType>
+<xsd:element name="RechercherETOUResponse" type="s0:tRechercherETOUResponse"/>
+<xsd:complexType name="tInitialiser"/>
+<xsd:element name="Initialiser" type="s0:tInitialiser"/>
+<xsd:complexType name="tInitialiserResponse"/>
+<xsd:element name="InitialiserResponse" type="s0:tInitialiserResponse"/>
+</xsd:schema>
+</types>
+<message name="WD_Serveur_Webservice_sRechercher_MessageIn">
+<part name="parameters" element="s0:sRechercher"/>
+</message>
+<message name="WD_Serveur_Webservice_sRechercher_MessageOut">
+<part name="parameters" element="s0:sRechercherResponse"/>
+</message>
+<message name="WD_Serveur_Webservice_RechercherImages_MessageIn">
+<part name="parameters" element="s0:RechercherImages"/>
+</message>
+<message name="WD_Serveur_Webservice_RechercherImages_MessageOut">
+<part name="parameters" element="s0:RechercherImagesResponse"/>
+</message>
+<message name="WD_Serveur_Webservice_RenvoyerImage_MessageIn">
+<part name="parameters" element="s0:RenvoyerImage"/>
+</message>
+<message name="WD_Serveur_Webservice_RenvoyerImage_MessageOut">
+<part name="parameters" element="s0:RenvoyerImageResponse"/>
+</message>
+<message name="WD_Serveur_Webservice_tabRenvoyerMotsCles_MessageIn">
+<part name="parameters" element="s0:tabRenvoyerMotsCles"/>
+</message>
+<message name="WD_Serveur_Webservice_tabRenvoyerMotsCles_MessageOut">
+<part name="parameters" element="s0:tabRenvoyerMotsClesResponse"/>
+</message>
+<message name="WD_Serveur_Webservice_RechercherETOU_MessageIn">
+<part name="parameters" element="s0:RechercherETOU"/>
+</message>
+<message name="WD_Serveur_Webservice_RechercherETOU_MessageOut">
+<part name="parameters" element="s0:RechercherETOUResponse"/>
+</message>
+<message name="WD_Serveur_Webservice_Initialiser_MessageIn">
+<part name="parameters" element="s0:Initialiser"/>
+</message>
+<message name="WD_Serveur_Webservice_Initialiser_MessageOut">
+<part name="parameters" element="s0:InitialiserResponse"/>
+</message>
+<portType name="WD_Serveur_WebserviceSOAPPortType">
+<operation name="sRechercher">
+<input message="s0:WD_Serveur_Webservice_sRechercher_MessageIn"/>
+<output message="s0:WD_Serveur_Webservice_sRechercher_MessageOut"/>
+</operation>
+<operation name="RechercherImages">
+<input message="s0:WD_Serveur_Webservice_RechercherImages_MessageIn"/>
+<output message="s0:WD_Serveur_Webservice_RechercherImages_MessageOut"/>
+</operation>
+<operation name="RenvoyerImage">
+<input message="s0:WD_Serveur_Webservice_RenvoyerImage_MessageIn"/>
+<output message="s0:WD_Serveur_Webservice_RenvoyerImage_MessageOut"/>
+</operation>
+<operation name="tabRenvoyerMotsCles">
+<input message="s0:WD_Serveur_Webservice_tabRenvoyerMotsCles_MessageIn"/>
+<output message="s0:WD_Serveur_Webservice_tabRenvoyerMotsCles_MessageOut"/>
+</operation>
+<operation name="RechercherETOU">
+<input message="s0:WD_Serveur_Webservice_RechercherETOU_MessageIn"/>
+<output message="s0:WD_Serveur_Webservice_RechercherETOU_MessageOut"/>
+</operation>
+<operation name="Initialiser">
+<documentation> R&amp;eacute;sum&amp;eacute; : &amp;lt;indiquez ici ce que fait la proc&amp;eacute;dure&amp;gt;&lt;br /&gt; Syntaxe :&lt;br /&gt;Initialiser ()&lt;br /&gt;&lt;br /&gt; Param&amp;egrave;tres :&lt;br /&gt;	Aucun&lt;br /&gt; Valeur de retour :&lt;br /&gt; 	Aucune&lt;br /&gt;&lt;br /&gt; Exemple :&lt;br /&gt; Indiquez ici un exemple d'utilisation.&lt;br /&gt;</documentation>
+<input message="s0:WD_Serveur_Webservice_Initialiser_MessageIn"/>
+<output message="s0:WD_Serveur_Webservice_Initialiser_MessageOut"/>
+</operation>
+</portType>
+<binding name="WD_Serveur_WebserviceSOAPBinding" type="s0:WD_Serveur_WebserviceSOAPPortType">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="sRechercher">
+<soap:operation soapAction="urn:WD_Serveur_Webservice/sRechercher" style="document"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="RechercherImages">
+<soap:operation soapAction="urn:WD_Serveur_Webservice/RechercherImages" style="document"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="RenvoyerImage">
+<soap:operation soapAction="urn:WD_Serveur_Webservice/RenvoyerImage" style="document"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="tabRenvoyerMotsCles">
+<soap:operation soapAction="urn:WD_Serveur_Webservice/tabRenvoyerMotsCles" style="document"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="RechercherETOU">
+<soap:operation soapAction="urn:WD_Serveur_Webservice/RechercherETOU" style="document"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="Initialiser">
+<soap:operation soapAction="urn:WD_Serveur_Webservice/Initialiser" style="document"/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+</binding>
+<service name="WD_Serveur_Webservice">
+<port name="WD_Serveur_WebserviceSOAPPort" binding="s0:WD_Serveur_WebserviceSOAPBinding">
+<soap:address location="%ADRESSE%"/>
+</port>
+</service>
+</definitions>
